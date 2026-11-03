@@ -260,6 +260,34 @@ What the four periods say:
 | Adset 5 v2 #108811 | 52669048300628 | Sep 28 → live | **Active** | $45 | identical to Adset 2 v2 | $1,605 | 572 | 3 | 0 | 0 |
 | Blueprint LAL #108779 | 52676923495628 | never | Paused, no ads | $99 | LAL 1% Masterclass buyers, 45–65 | $0 | — | — | — | — |
 
+### Set #108779 — exact configuration (read from Meta Nov 3, 17:05 Israel)
+
+The only Blueprint ad set that holds a buyer lookalike. **Paused, 0 ads, $0 spent, 0 impressions, ever.** Ad set ID 52676923495628. Created Oct 30 08:59 Israel, last edit Oct 30 09:06.
+
+| Setting | Value |
+|---|---|
+| Status | PAUSED; campaign also PAUSED |
+| Campaign | #116622 LGV_EN_FB_Demographics_Longevity Life Academy (52658911188428), Sales. Not the live Blueprint campaign #118148 |
+| Ads | None, never had one |
+| Daily budget | $99, lowest cost, no cap |
+| Optimization | Conversions, pixel 1440305917310328, event Purchase, billed per impression |
+| Attribution | 7-day click only |
+| Age / gender | 45–65, all genders |
+| Location | 30 US states only (AZ CA CO CT DE FL GA HI IL IA ME MD MA MI MN NV NH NJ NM NY NC OH OR PA RI TX VT VA WA WI) |
+| Advantage+ audience | OFF; lookalike expansion OFF; custom-audience expansion OFF |
+| Interests / income / behaviours | None |
+| Placements / devices | Not restricted: all placements, all devices |
+| Meta estimated audience | 1.7M–2.0M (name says 2.3–2.7M, the Oct 30 estimate) |
+| Lookalike included | Buyers 1% US, ID 52674398644428, ratio 0.01, US, 2.1M–2.5M, ready. Meta name wrongly reads "2% US (actually 1%, unused)"; spec is 1% |
+| Seed | "Julie Masterclass \| CRM paid buyers 101 \| launch-2026-10-18", ID 52673824207628, customer file (hashed email, phone, name, country) |
+| Uploaded | Oct 18: 101 unique CRM-paid buyers (109 won orders, 7 test orders excluded), 101 received, 0 invalid. Oct 19–20: +19, +2 → 122 unique buyers from 131 paid orders, 0 invalid. Oct 30 08:57: file refreshed. Meta hides matched counts under 1,000 |
+| Excluded | The seed file itself (buyers 101) |
+| Sibling lookalike, unused | Buyers 2% US, ID 52674398835028, 4.2M–4.9M, ready |
+| Where the 1% LAL actually ran | Masterclass #108814 and #108815 (attached Oct 20). Never in a Blueprint set with an ad |
+
+Raw JSON: [set](data/set_108779_full.json) · [lookalike](data/aud_52674398644428.json) · [seed](data/aud_52673824207628.json) · [estimate](data/est_108779.json). Open in Ads Manager: https://adsmanager.facebook.com/adsmanager/manage/adsets/edit?act=1459085242361281&selected_adset_ids=52676923495628
+
+
 Cold prospecting total (sets 1, 2 v1, 3, 5 v1, 2 v2, 5 v2): **$14,182, 6,445 clicks, 29 carts, 6 checkouts, 2 purchases**, both before Sep 14.
 
 
