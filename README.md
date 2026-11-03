@@ -1,5 +1,7 @@
 # Blueprint on Meta — mission file
 
+**→ [STAGE-1.md](STAGE-1.md): every Blueprint ad set's exact configuration, every audience (seeds, lookalike %, sizes, failures, where used), last 14 days day-by-day with change markers, all-time spend per placement / gender × age / device per ad set.**
+
 Longevity Life Academy · ad account 1459085242361281 · all numbers pulled live Nov 3 2026, 13:10–14:00 Israel · Meta paid media only.
 
 **Mission: Blueprint sales from Meta, starting today, by putting the Blueprint behind the exact formula that is already producing 20–60 Masterclass purchases a week in this account.**
