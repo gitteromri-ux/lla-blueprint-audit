@@ -1,5 +1,7 @@
 # Blueprint Meta campaign #118148 — the serious version
 
+**→ [WIN-FAST-PLAN.md](WIN-FAST-PLAN.md): account-wide CPM picture, audience sizes, the 5 immediate steps, GitHub steps, ad copy, CRM copy.**
+
 Longevity Life Academy · ad account 1459085242361281 · campaign 52663511211628 · data pulled Nov 3 2026, 13:10 Israel time.
 Every number below comes from the Meta Insights/Graph API, the pixel event log, or the checkout repo commit log. QA-test events are removed where stated. Nothing is estimated.
 
