@@ -8,16 +8,23 @@ Longevity Life Academy · ad account 1459085242361281 · all numbers pulled live
 
 ## 0. The decision, on one screen
 
-| # | Action | Where | Setting | Budget |
-|---|---|---|---|---:|
-| 1 | Pause | Blueprint Adset 2 #108808, Adset 5 #108811, Julie video #12 | they share the Masterclass audience and lose it: 0 checkouts since Oct 6 | −$84 |
-| 2 | New ad | Ad#17 video (the 135-purchase asset) + Blueprint copy + Blueprint link | section 4 | — |
-| 3 | New set **BP-WARM** | Masterclass buyers + Masterclass checkout starters | 35–65+, FB Feed + Reels, mobile, Purchase | $80 |
-| 4 | New set **BP-FORMULA** | the #108816 recipe: 41 interests ∧ Engaged Shoppers ∧ income top 25%, **55–65+**, FB Reels + Feed, mobile | the cells that gave 152 of 199 Masterclass purchases | $100 |
-| 5 | Edit #108816 | add the Ad#17-Blueprint ad as 2nd ad; budget $48 → $120 | set is already in learning after your Nov 2 edit, so the change is free | +$72 |
-| 6 | Rebuild Blueprint Adset 4 | remarketing → Initiate Checkout opt, exclude buyers, drop leads/video lists, FB Feed + Reels, mobile, ads = Ad#17-Blueprint + Courtney | | $40 |
+Masterclass sets are terminated. Everything below runs inside the Blueprint campaign 52663511211628 and stands on its own. With the Masterclass sets off, the Blueprint sets stop bidding against your own account for the same people.
 
-Net: **$292/day** (today $223) with $84 moved out of a dead auction. First read +24 h, decision read Nov 6, full read Nov 10. Expected on Masterclass benchmarks: first Blueprint sale inside 48 h from BP-WARM, 2–4 Blueprint sales in week 1 across the four surfaces at $350–550 each, against $4,580 today.
+| # | Action | Exact setting | Budget |
+|---|---|---|---:|
+| 1 | **Pause** Adset 2 #108808 (52669013718628), Adset 5 #108811 (52669048300628), Julie video #12 everywhere | 0 checkouts since Oct 6 on $1,654 | −$84 |
+| 2 | **Build the ad** `BP | Ad17 Five habits | Blueprint` | Ad#17 videos (square 1748787486227637, vertical 2236898053915469) + Blueprint copy (section 4) + link `https://longevitylifeacademy.pages.dev/?offer=MASTERCLASS-VIP&utm_source=fb&utm_campaign=bp-ad17` · CTA Sign Up | — |
+| 3 | **New set BP-WARM** | Include Masterclass buyers 101 (52673824207628) + CRM paid purchasers + Masterclass IC30 (52673824370228). No exclusions. US · all genders · 35–65+ · FB Feed + FB Reels · mobile · Advantage audience off · Purchase, 7d click 1d view. Ads: Ad#17-Blueprint + Courtney video #3 | $80 |
+| 4 | **New set BP-FORMULA** | The proven stack: 41 interests ∧ Engaged Shoppers ∧ household income top 10% + 10–25% (copy from Adset 2's flexible_spec). US · all genders · **55–65+** · FB Feed + FB Reels · mobile · Advantage audience off · exclude buyers 101 and Purchase-30d · Purchase, 7d click 1d view. Ads: Ad#17-Blueprint + Courtney video #3 | $120 |
+| 5 | **Rebuild Adset 4** remarketing (52666232368428) | Optimization → Initiate Checkout until 10 purchases logged. Keep site 30/90, checkout 30/90, cart 30/90; remove leads 30/90, form openers, both video-viewer lists. Exclude buyers 101. FB Feed + FB Reels · mobile · 45–65+. Ads: Ad#17-Blueprint + Courtney video #3; pause the rest | $40 |
+
+Net **$240/day** (today $223). Two ads per set, no more. No edits between reads.
+
+**Why these three sets:** in the Masterclass data (section 1) the identical interest ∧ shoppers ∧ income stack produced 199 purchases; 76% were 55+, 48% were 65+, 85% came from FB Reels, 88% from iPhone, Instagram and desktop produced 2 and 0. Warm Masterclass checkout starters converted 4.4% of clicks, the best in the account. Blueprint's cold sets ran that stack capped at 64 with Instagram and desktop added and a non-converting ad (section 2).
+
+**Reads:** +2 h BP-WARM delivering (if 0 impressions → switch it to Initiate Checkout). +24 h all three: CPM, clicks, carts, checkouts, sales. Nov 6: BP-FORMULA cost per checkout > $250 → cut to 65+ only. Nov 10: scale the lowest cost per sale +50%, pause the worst. Guardrails: CPM > $900 after 48 h with < 50 clicks → pause; $300 spent, 10+ clicks, 0 carts → pause the weaker-CTR ad.
+
+**Expected week 1 on Masterclass benchmarks, discounted for the higher Blueprint ticket:** BP-WARM first sale inside 48 h at $300–500; BP-FORMULA $450–650 per sale; 2–4 Blueprint sales in week 1 against $4,580 per sale today.
 
 ---
 
@@ -106,7 +113,7 @@ Blueprint's cold sets were the Masterclass formula with the best age cell remove
 
 ## 3. The war plan: exact settings
 
-All new sets go inside the Masterclass campaign shell **52668266203628** (healthy delivery, no campaign-level drag). Nothing else in that campaign is touched except #108816.
+All sets live inside the Blueprint campaign **52663511211628**. Masterclass sets are terminated; nothing depends on them.
 
 ### 3.1 Pause (Blueprint campaign 52663511211628)
 - Adset 2 #108808 → 52669013718628 · Adset 5 #108811 → 52669048300628 · Julie video #12 in every set.
@@ -126,18 +133,15 @@ All new sets go inside the Masterclass campaign shell **52668266203628** (health
 - Benchmark: #108814 on the non-buyer half of this pool does 4.4% click → purchase at $305.
 - Why it delivers today: the lists are small and warm; Meta serves them within the hour.
 
-### 3.4 `BP-FORMULA | 41 int ∧ shoppers ∧ income 25% | 55-65+ | FB Reels+Feed | mobile` — $100/day
-- Duplicate #108816 (52668330870828) inside the same campaign; keep the interest stack, Engaged Shoppers and both income brackets exactly as they are.
-- Change only: age **55–65+** · remove Instagram · remove desktop · exclude `Purchase - 30 Days` and buyers 101 (they belong to BP-WARM).
+### 3.4 `BP-FORMULA | 41 int ∧ shoppers ∧ income 25% | 55-65+ | FB Reels+Feed | mobile` — $120/day
+- Create in the Blueprint campaign with the Masterclass stack: the 41 interests, Engaged Shoppers, household income top 10% and 10–25% (identical to Adset 2's flexible_spec, so copy it from 52669013718628).
+- Age **55–65+** · US · all genders · FB Feed + FB Reels · mobile · Advantage audience off · exclude `Purchase - 30 Days` and buyers 101 (they belong to BP-WARM).
 - Ads: Ad#17-Blueprint + Courtney video #3.
 - Audience size: #108816 at 35–65+ is 88–104M; 55–65+ is roughly 35–45M. Big enough that overlap with #108816 costs delivery, not CPM.
 - Benchmark: women 65+, women 55–64, men 65+ inside this stack are $339–372 per Masterclass purchase. Blueprint's first payment is $79, same ticket as the VIP masterclass; the honest expectation is a lower click → sale rate, so plan on $450–650 per Blueprint sale here, not $350.
 
-### 3.5 #108816 (52668330870828): add the Blueprint ad, raise the budget
-- Add `BP | Ad17 Five habits | Blueprint` as a second active ad. Do not touch the Masterclass ad.
-- Budget $48 → $120. The set re-entered learning on your Nov 2 edit (learning_stage_info: last significant edit Nov 2), so a budget move costs nothing now.
-- Meta will route 60–80% of spend to the ad that converts cheaper, which will be the Masterclass ad. Both outcomes feed Blueprint: a Masterclass buyer lands in BP-WARM within 24 h.
-- Nov 6 rule: if the Blueprint ad has under 10% of the set's spend, move it to its own clone of #108816 at $100 and reset #108816 to $48.
+### 3.5 Masterclass sets
+Terminated. Their audiences and learnings are reused in 3.3 and 3.4; no set depends on them being live.
 
 ### 3.6 Blueprint Adset 4 remarketing (52666232368428) — $40/day
 - Optimization → **Initiate Checkout** until the campaign logs 10+ purchases, then back to Purchase.
@@ -157,7 +161,7 @@ All new sets go inside the Masterclass campaign shell **52668266203628** (health
 |---|---|---|
 | +2 h | BP-WARM impressions > 0 | if 0: switch BP-WARM to Initiate Checkout optimization |
 | +24 h | all four: impressions, CPM, clicks, carts, checkouts, sales | nothing unless a guardrail trips |
-| Nov 6 | #108816 spend share of the Blueprint ad; BP-FORMULA cost per checkout | <10% share → clone rule in 3.5; BP-FORMULA cost per checkout > $250 → cut to 65+ women + men only |
+| Nov 6 | BP-FORMULA cost per checkout; BP-WARM sales | BP-FORMULA cost per checkout > $250 → cut to 65+ only |
 | Nov 10 | full table, same columns as section 1 | scale the set with the lowest cost per sale by +50%, pause the worst |
 
 ---
