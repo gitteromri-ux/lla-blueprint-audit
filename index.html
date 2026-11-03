@@ -3,204 +3,307 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Blueprint on Meta — executive file</title>
+<title>Blueprint on Meta — the file</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
-:root{--bg:#0f1420;--panel:#171e2e;--panel2:#1f2840;--line:#2a3550;--text:#f2f4f8;--muted:#9aa5bf;--red:#ff5a4e;--green:#3ddc84;--blue:#5aa9ff;--amber:#ffc24d;--grey:#6b7590}
+:root{--bg:#07090f;--panel:#0f1320;--panel2:#161c2e;--line:#232b42;--text:#f4f6fb;--muted:#9aa5bf;--red:#ff4d5e;--green:#22e58a;--blue:#4da3ff;--amber:#ffb830;--violet:#a78bfa;--pink:#ff6ad5}
 *{box-sizing:border-box}
-html{font-size:18px}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Lato,system-ui,sans-serif;line-height:1.5}
-.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
-h1{font-size:2.4rem;line-height:1.1;margin:0 0 8px;font-weight:900}
-h2{font-size:1.8rem;margin:56px 0 14px;font-weight:900;letter-spacing:-.01em}
-h3{font-size:1.25rem;margin:26px 0 10px;font-weight:700}
+html{font-size:18px;scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 10% -10%,#1a2347 0%,transparent 60%),radial-gradient(900px 500px at 100% 10%,#3a1030 0%,transparent 55%),var(--bg);color:var(--text);font-family:Lato,system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1200px;margin:0 auto;padding:30px 20px 90px}
+.eyebrow{color:var(--muted);font-size:.95rem;letter-spacing:.02em}
+h1{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:4.2rem;line-height:.95;margin:10px 0 14px;letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--amber);text-shadow:0 0 30px rgba(255,184,48,.45)}
+h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:2.6rem;line-height:1.05;margin:70px 0 10px}
+h2 span{color:var(--muted);font-size:1.4rem;display:block;font-family:Lato;margin-bottom:6px}
+h3{font-size:1.3rem;margin:24px 0 10px;font-weight:900}
 p{margin:0 0 12px;font-size:1.05rem}
-.sub{color:var(--muted);font-size:1rem}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:26px 0}
-.kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 18px 14px}
-.kpi b{display:block;font-size:2.2rem;line-height:1;font-weight:900}
-.kpi span{display:block;color:var(--muted);font-size:.95rem;margin-top:8px}
-.kpi.red b{color:var(--red)}.kpi.green b{color:var(--green)}.kpi.blue b{color:var(--blue)}.kpi.amber b{color:var(--amber)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;margin:16px 0}
+.lede{font-size:1.25rem;color:#dfe5f3;max-width:900px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:30px 0}
+.kpi{background:linear-gradient(180deg,#121829,#0d1120);border:1px solid var(--line);border-radius:16px;padding:20px 18px 16px;position:relative;overflow:hidden}
+.kpi:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--c,var(--blue));box-shadow:0 0 24px var(--c,var(--blue))}
+.kpi b{display:block;font-size:2.5rem;line-height:1;font-weight:900;color:var(--c,var(--blue));text-shadow:0 0 18px color-mix(in srgb,var(--c,var(--blue)) 45%,transparent)}
+.kpi span{display:block;color:var(--muted);font-size:.95rem;margin-top:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;margin:18px 0;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.card.glow-red{border-color:#5a1f28;box-shadow:0 0 0 1px #5a1f28,0 0 40px rgba(255,77,94,.15)}
+.card.glow-green{border-color:#1b5c3c;box-shadow:0 0 0 1px #1b5c3c,0 0 40px rgba(34,229,138,.15)}
+.card.glow-amber{border-color:#5c4414;box-shadow:0 0 0 1px #5c4414,0 0 40px rgba(255,184,48,.15)}
+.card.glow-blue{border-color:#1b3d6b;box-shadow:0 0 0 1px #1b3d6b,0 0 40px rgba(77,163,255,.15)}
 .card h3{margin-top:0}
-.tag{display:inline-block;border-radius:8px;padding:3px 10px;font-size:.9rem;font-weight:700;margin:0 6px 6px 0;background:var(--panel2);border:1px solid var(--line)}
-.tag.on{background:#143a2a;border-color:#1f6b45;color:var(--green)}.tag.off{background:#3a1a1a;border-color:#6b2a2a;color:var(--red)}.tag.warn{background:#3a2e12;border-color:#6b5520;color:var(--amber)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:860px){.grid2,.grid3{grid-template-columns:1fr}html{font-size:17px}}
+.tag{display:inline-block;border-radius:9px;padding:4px 11px;font-size:.9rem;font-weight:700;margin:0 6px 8px 0;background:var(--panel2);border:1px solid var(--line)}
+.tag.good{background:#0d3324;border-color:#1b6b45;color:var(--green)}.tag.bad{background:#3a1220;border-color:#7a2436;color:var(--red)}.tag.warn{background:#3a2a0e;border-color:#7a5a1c;color:var(--amber)}.tag.info{background:#102848;border-color:#215a9c;color:var(--blue)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr}html{font-size:17px}h1{font-size:3rem}h2{font-size:2rem}}
 table{width:100%;border-collapse:collapse;font-size:1rem;margin:8px 0 6px}
-th{color:var(--muted);font-weight:700;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-size:.9rem;text-transform:uppercase;letter-spacing:.04em}
-td{padding:9px 10px;border-bottom:1px solid #222c44;vertical-align:top}
-td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
-tr.chg td{background:#143a2a}
+th{color:var(--muted);font-weight:700;text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+td{padding:9px 10px;border-bottom:1px solid #1b2237;vertical-align:top}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.chg td{background:#0d3324}tr.sale td{background:#102848}tr.bug td{background:#3a1220}
 tr.tot td{font-weight:900;border-top:2px solid var(--line)}
-.kv td:first-child{color:var(--muted);width:34%}
-.chart{position:relative;height:340px}
-.chart.tall{height:420px}
+.kv td:first-child{color:var(--muted);width:36%}
+.chart{position:relative;height:340px}.chart.tall{height:440px}.chart.short{height:260px}
 .note{color:var(--muted);font-size:.95rem}
-.verdict{font-weight:900}
-.v-red{color:var(--red)}.v-green{color:var(--green)}.v-amber{color:var(--amber)}
-details{margin:8px 0}summary{cursor:pointer;color:var(--blue);font-weight:700;font-size:1rem}
-.step{display:flex;gap:16px;align-items:flex-start;margin:14px 0;padding:16px;background:var(--panel2);border-radius:12px}
-.step b.num{flex:0 0 44px;height:44px;border-radius:50%;background:var(--blue);color:#0b1020;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900}
+.R{color:var(--red);font-weight:900}.G{color:var(--green);font-weight:900}.A{color:var(--amber);font-weight:900}.B{color:var(--blue);font-weight:900}.V{color:var(--violet);font-weight:900}
+mark{background:rgba(255,184,48,.22);color:#ffd57a;padding:0 4px;border-radius:4px;font-weight:700}
+details{margin:8px 0}summary{cursor:pointer;color:var(--blue);font-weight:700;font-size:1rem;padding:6px 0}
+.plan{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+@media(max-width:900px){.plan{grid-template-columns:1fr}}
+.meter{height:12px;border-radius:6px;background:#1b2237;overflow:hidden;margin:6px 0 2px}.meter i{display:block;height:100%;border-radius:6px}
+.big{font-size:2rem;font-weight:900;line-height:1}
 .pill{font-size:.85rem;color:var(--muted)}
-hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}.toc a{color:var(--text);text-decoration:none;background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem}
+hr{border:0;border-top:1px solid var(--line);margin:50px 0}
 a{color:var(--blue)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;color:var(--muted);margin:6px 0 0}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<p class="sub">Longevity Life Academy · Meta ad account 1459085242361281 · data pulled live Nov 3 2026, 14:30 Israel · Meta paid media only</p>
-<h1>Blueprint on Meta</h1>
-<p class="sub">Every number here is read from the ad set object, the audience object or the Insights API. QA test-device events (men 35–44, Sep 20–26) are flagged wherever Meta cannot split them out.</p>
-
-<div class="kpis">
-  <div class="kpi"><b id="k-spend"></b><span>spent on Blueprint, all time (May 22 → Nov 3)</span></div>
-  <div class="kpi red"><b id="k-purch"></b><span>purchases Meta credits, all time · pixel saw 2 more (Oct 7, Oct 31)</span></div>
-  <div class="kpi amber"><b id="k-ic"></b><span>real checkouts all time (24 more were the QA phone)</span></div>
-  <div class="kpi red"><b id="k-14"></b><span>last 14 days, 3 live sets → 1 checkout, 1 purchase</span></div>
-  <div class="kpi blue"><b id="k-cpm"></b><span>CPM on the live sets, last 14 days</span></div>
+<p class="eyebrow">Longevity Life Academy · Meta account 1459085242361281 · pulled live Nov 3 2026, 15:10 Israel · Meta paid media only · every number is read from the ad set object, the audience object or the Insights API</p>
+<h1>Blueprint on Meta.<br><em>What happened, what is set, what we do now.</em></h1>
+<p class="lede">Two months, $18,337 on the current campaign, $35,336 on Blueprint all time, <mark>6 real purchases</mark>. The money did not fail for one reason. It failed for five, and each one is visible below with the number that proves it.</p>
+<div class="toc">
+  <a href="#now">What is live now</a><a href="#14">Last 14 days</a><a href="#time">Timeline, bugs, sales</a><a href="#aud">Audiences fed and built</a><a href="#money">All-time money</a><a href="#ads">Ads</a><a href="#when">Hours and days</a><a href="#mc">What Masterclass proved</a><a href="#plan">The plan, set by set</a>
 </div>
 
-<h2>1. The three live ad sets, exactly as configured now</h2>
-<p class="sub">Names as they appear in your Ads Manager. Green = helps, red = hurts, amber = untested.</p>
+<div class="kpis">
+  <div class="kpi" style="--c:var(--blue)"><b id="k-spend"></b><span>spent on Blueprint all time (May 22 → Nov 3)</span></div>
+  <div class="kpi" style="--c:var(--red)"><b id="k-purch"></b><span>purchases Meta credits · pixel saw 2 more (Oct 7, Oct 31)</span></div>
+  <div class="kpi" style="--c:var(--amber)"><b id="k-ic"></b><span>real checkouts all time · 24 more were the QA phone</span></div>
+  <div class="kpi" style="--c:var(--red)"><b id="k-14"></b><span>last 14 days on the 3 live sets → 1 checkout, 1 sale</span></div>
+  <div class="kpi" style="--c:var(--violet)"><b id="k-cpm"></b><span>CPM on the live sets, last 14 days (was $25 before Oct 5)</span></div>
+  <div class="kpi" style="--c:var(--green)"><b>$0</b><span>ever spent on buyer lists or purchaser lookalikes for Blueprint</span></div>
+</div>
+
+<div class="card glow-red">
+<h3>The five reasons, in one breath</h3>
+<div class="grid2">
+<div>
+<p><span class="R">1 · Delivery is broken.</span> Since Oct 5 the live sets pay <b>$266–$410 CPM</b> for 600 impressions a week each. $2,977 in 29 days bought 5 carts.</p>
+<p><span class="R">2 · The cold sets fight the wrong fight.</span> Adset 2 and 5 are the exact Masterclass stack capped at 64, with Instagram and desktop on, and a video that made 3,946 clicks and <b>0 real checkouts</b>.</p>
+<p><span class="R">3 · The numbers were polluted.</span> 24 of the 49 checkouts and 43 of the 86 carts Meta shows for this campaign are <b>your QA phone</b> (Sep 20–26). The remarketing set learned from it.</p>
+</div>
+<div>
+<p><span class="R">4 · Attribution was dark Sep 16–29.</span> The CAPI change on the checkout cut credited sales for 42 days through $11,000 of spend. Carts and checkouts kept tracking; they show the campaign was weak with or without the bug.</p>
+<p><span class="R">5 · The warm money was never spent.</span> Two buyer files uploaded, five lookalikes built, Masterclass checkout lists ready: <b>no live Blueprint set uses any of them</b>. Two of the three October sales came within four days of the Masterclass attendee offer.</p>
+</div></div></div>
+
+<h2 id="now"><span>Section 1</span>What is live right now, exactly as configured</h2>
+<p class="lede">Names as they appear in Ads Manager. <span class="G">Green</span> helps. <span class="R">Red</span> hurts. <span class="A">Amber</span> is untested.</p>
 <div id="live"></div>
 
-<h2>2. Last 14 days, day by day</h2>
-<p class="sub">Green rows and green lines = a significant change happened that day (budget, ads on/off, targeting). The day after a green row is a new learning period.</p>
+<h2 id="14"><span>Section 2</span>Last 14 days, day by day</h2>
+<p class="lede">Bars are daily spend per set, lines are CPM. <span class="G">Green lines and rows</span> mark a significant change (budget, ads on/off, targeting). The day after a green row starts a new learning period.</p>
 <div class="card"><div class="chart tall"><canvas id="c14"></canvas></div></div>
 <div id="d14"></div>
 
-<h2>3. The audiences: what was fed, what was built, what is actually used</h2>
-<div class="card">
-<div class="grid3">
-  <div><b style="font-size:1.4rem">2 customer files uploaded</b><p class="sub">Masterclass CRM paid buyers (Oct 18, re-uploaded Oct 30) · All Masterclass + Blueprint signups + checkout starters (Oct 28). Meta hides match counts under 1,000.</p></div>
-  <div><b style="font-size:1.4rem">5 lookalikes live, 2 failed</b><p class="sub">Buyers 1% US (2.1–2.5M), buyers 2% US (4.2–5.0M), checkout starters 1% (2.4–2.8M) and 2% (4.8–5.7M), Masterclass page viewers 1% (2.2–2.6M). Failed: pixel Purchase-30d 1%, Julie video viewers 1% — seeds too small. <b>No lookalike was built from the Oct 28 file.</b></p></div>
-  <div><b style="font-size:1.4rem" class="v-red">0 used by live Blueprint sets</b><p class="sub">No live Blueprint set includes a buyer list or a lookalike. Adset 4 uses 11 pixel/engagement lists with no exclusions. The only Blueprint set with a buyer lookalike (#108779, 1.7–2.0M) is paused and never had an ad.</p></div>
-</div>
-<details><summary>All 31 audiences — seed, size, status, where used</summary><div id="aud"></div></details>
-</div>
+<h2 id="time"><span>Section 3</span>Timeline: every sale, every bug, every change</h2>
+<div class="card"><div class="chart tall"><canvas id="cwk"></canvas></div><div class="legend"><i style="background:#c9ced6"></i>spend <i style="background:var(--blue)"></i>real checkouts <i style="background:var(--grey,#6b7590)"></i>QA-phone checkouts <i style="background:var(--red)"></i>credited purchases <i style="background:var(--amber)"></i>CPM</div></div>
+<div class="card"><table id="tl"></table></div>
+<div class="card glow-amber"><h3>Account-wide CPM, by day, since Sep 1</h3><div class="chart short"><canvas id="cacct"></canvas></div><p class="note">The whole account, not just Blueprint, moved from $26–80 to $400–520 on Oct 4–5, the days the Masterclass campaign scaled to $3k/day on Purchase optimization. Masterclass sets are now terminated, so the Blueprint sets no longer share that auction.</p></div>
 
-<h2>4. All-time Blueprint money: where it went, what it brought</h2>
-<p class="sub">All 12 Blueprint sets combined, May 22 → Nov 3. Bars = spend. Labels = carts / checkouts / purchases. Per-set cuts with each set's configuration are below the charts.</p>
+<h2 id="aud"><span>Section 4</span>Audiences: what was fed, what was built, what is used</h2>
+<div class="grid3">
+  <div class="card glow-blue"><div class="big B">2 files</div><p>uploaded: <b>Masterclass CRM paid buyers</b> (Oct 18, re-uploaded Oct 30) and <b>all Masterclass + Blueprint signups + checkout starters</b> (Oct 28). Meta hides match counts under 1,000, so the API cannot show the row count.</p></div>
+  <div class="card glow-amber"><div class="big A">5 live, 2 failed</div><p>Lookalikes built: buyers <b>1% US</b> (2.1–2.5M), buyers <b>2% US</b> (4.2–5.0M), checkout starters <b>1%</b> (2.4–2.8M) and <b>2%</b> (4.8–5.7M), Masterclass page viewers 1% (2.2–2.6M). <span class="R">Failed:</span> pixel Purchase-30d 1% and Julie video viewers 1%, seeds too small. <span class="A">No lookalike was built from the Oct 28 file.</span></p></div>
+  <div class="card glow-red"><div class="big R">0 in use</div><p>No live Blueprint set includes a buyer list or a lookalike. Adset 4 runs on 11 pixel/engagement lists with <b>no exclusions</b>. The one Blueprint set with a buyer lookalike (#108779, 1.7–2.0M) was created Oct 30, is paused, and <b>never had an ad</b>.</p></div>
+</div>
+<div class="card"><details><summary>All 31 audiences: seed, size, status, where used</summary><div id="aud-t"></div></details></div>
+<div class="card glow-blue"><h3>Lookalike and list usage, per ad set, whole account</h3>
+<p class="note">Every ad set that includes or excludes any custom audience. Ratio · seed · Meta size. Sets not listed here run on interests or broad only.</p>
+<table id="lalset"></table></div>
+
+<h2 id="money"><span>Section 5</span>All-time Blueprint money: where it went, what it brought</h2>
+<p class="lede">All 12 Blueprint sets since May 22. <span class="G">Green</span> produced a purchase, <span class="B">blue</span> checkouts only, <span class="R">red</span> nothing. Hover a bar for clicks, landing views, carts.</p>
 <div class="grid2">
   <div class="card"><h3>By placement</h3><div class="chart tall"><canvas id="cpp"></canvas></div></div>
   <div class="card"><h3>By gender × age</h3><div class="chart tall"><canvas id="cag"></canvas></div></div>
 </div>
 <div class="grid2">
   <div class="card"><h3>By device</h3><div class="chart"><canvas id="cdv"></canvas></div></div>
-  <div class="card"><h3>What the all-time cuts say</h3>
-    <p><span class="verdict v-green">FB Feed</span>: $14,827 (42% of all spend), 102 carts, 15 checkouts, 2 of the 4 credited sales. The only placement that has ever sold Blueprint cold.</p>
-    <p><span class="verdict v-amber">FB Reels</span>: $6,959, 101 carts, 11 checkouts, 1 sale. Same cart cost as Feed, one-third the volume.</p>
-    <p><span class="verdict v-red">FB Stories</span>: $4,808, 163 carts, 7 checkouts, 0 sales (May–Aug old campaign). Carts that never pay.</p>
-    <p><span class="verdict v-red">IG Reels, IG Stories, in-stream, Threads, Audience Network, Marketplace</span>: $5,700 combined, 5 checkouts, 0 sales. IG Feed: $2,746, 1 sale.</p>
-    <p><span class="verdict v-red">Women 65+</span>: $11,137, the biggest cell all time, 291 carts, 12 checkouts, <b>0 sales</b>. Nearly all of it May–Aug under the old BioAge ads. Since Sep 28 the cold sets cap at 64, so 65+ with the current ads is untested.</p>
-    <p><span class="verdict v-green">Women 55–64 and 45–54</span>: $12,516, 90 carts, 9 checkouts, 2 sales. The two cells that have bought.</p>
-    <p><span class="verdict v-red">Men</span>: $8,538, 1 sale (Sep 13). Men 35–44 is the QA phone.</p>
-    <p><span class="verdict v-green">iPhone</span>: 74% of spend, 3 of 4 sales. Desktop: $973, 0 sales.</p>
+  <div class="card glow-blue"><h3>What the cuts say</h3>
+    <p><span class="G">FB Feed</span> — $14,827 (42% of all spend), 102 carts, 15 checkouts, <b>2 of 4 credited sales</b>. The only placement that has sold Blueprint cold.</p>
+    <p><span class="A">FB Reels</span> — $6,959, 101 carts, 11 checkouts, 1 sale. Same cost per cart as Feed at a third of the volume.</p>
+    <p><span class="R">FB Stories</span> — $4,808, 163 carts, 7 checkouts, <b>0 sales</b>. Carts that never pay.</p>
+    <p><span class="R">IG Reels, IG Stories, in-stream, Threads, Audience Network, Marketplace</span> — $5,700, 5 checkouts, 0 sales. IG Feed $2,746, 1 sale.</p>
+    <p><span class="R">Women 65+</span> — $11,137, the biggest cell ever, 291 carts, 12 checkouts, <b>0 sales</b>, almost all under the May–Aug BioAge ads. Since Sep 28 the cold sets cap at 64, so 65+ with the current ads is <span class="A">untested</span>.</p>
+    <p><span class="G">Women 55–64 and 45–54</span> — $12,516, 90 carts, 9 checkouts, 2 sales. The two cells that have bought.</p>
+    <p><span class="R">Men</span> — $8,538, 1 sale (Sep 13). Men 35–44 is the QA phone.</p>
+    <p><span class="G">iPhone</span> — 74% of spend, 3 of 4 sales. Desktop $973, 0.</p>
   </div>
 </div>
 <div id="persets"></div>
 
-<h2>5. The plan on one screen</h2>
-<p class="sub">Masterclass sets are terminated. Everything runs inside the Blueprint campaign. Full reasoning and the Masterclass evidence it leans on: <a href="README.md">README</a>. The parts that are Masterclass-only hypotheses (Reels, 65+) are tests with a Nov 6 kill rule, not givens.</p>
-<div class="card">
-  <div class="step"><b class="num">1</b><div><b>Pause</b> Adset 2 #108808, Adset 5 #108811 and Julie video #12. 0 checkouts since Oct 6 on $1,654. Frees $84/day.</div></div>
-  <div class="step"><b class="num">2</b><div><b>Build one ad</b> from the 135-purchase Masterclass asset (Ad#17 video) with Blueprint copy and the Blueprint link; Courtney video #3 as the second ad. Two ads per set, no more.</div></div>
-  <div class="step"><b class="num">3</b><div><b>BP-WARM · $80/day</b> — Masterclass buyers + CRM paid purchasers + Masterclass checkout starters (IC30). No exclusions. US · all genders · 35–65+ · FB Feed + FB Reels + IG Feed · mobile · Advantage+ audience OFF · Purchase. The warm pool converted 4.4% of clicks for Masterclass; the only audience that has ever bought Blueprint at volume.</div></div>
-  <div class="step"><b class="num">4</b><div><b>BP-FORMULA · $120/day</b> — the proven stack (41 interests AND Engaged Shoppers AND income top 10% + 10–25%), US · all genders · <b>55–65+</b> · FB Feed + FB Reels · mobile · exclude buyers and Purchase-30d. Opens the 65+ door that Blueprint's cold sets kept shut. Nov 6 rule: cost per checkout over $250 → cut to 65+ only; Reels over $250 per checkout → Feed only.</div></div>
-  <div class="step"><b class="num">5</b><div><b>Rebuild Adset 4 · $40/day</b> — optimize for Initiate Checkout until 10 purchases are logged; keep site/checkout/cart 30/90; drop leads, form openers, video viewers; exclude buyers and the QA device; FB Feed + FB Reels · mobile · 45–65+.</div></div>
-  <p class="note" style="margin-top:14px">Total $240/day (today $223). Reads: +2 h (BP-WARM delivering), +24 h, Nov 6 (kill rules), Nov 10 (scale the lowest cost per sale by 50%, pause the worst).</p>
+<h2 id="ads"><span>Section 6</span>Ads, all time in this campaign</h2>
+<div class="card"><table id="adst"></table><p class="note">Julie video #12 bought the cheapest clicks in the account and converted none of them in the cold sets. Both remarketing sales came off Courtney creatives. Julie static is the only prospecting ad with real checkouts.</p></div>
+
+<h2 id="when"><span>Section 7</span>Hour of day and day of week</h2>
+<div class="grid2">
+  <div class="card"><h3>Hour of day, clean window (Sep 30 → Nov 3)</h3><table id="hrs"></table><p class="note">Account time zone is Israel; shown in US Eastern. Half the spend and 8 of 11 carts land in the US evening. The 23:00–05:00 ET block is the only cut worth making and it is 14% of spend. Not a lever at this volume.</p></div>
+  <div class="card"><h3>Day of week, whole campaign, QA phone removed</h3><table id="dow"></table><p class="note">Friday carts are cheapest, Saturday worst, but 3–12 carts a day is noise, not a schedule.</p></div>
 </div>
 
+<h2 id="mc"><span>Section 8</span>What the Masterclass campaign proved (Sep 28 → Nov 3, $73,826, 199 purchases)</h2>
+<p class="lede">Same account, same pixel, same interest stack, same age range, a $49/$79 ticket. It is the prior for the plan, not a given: Reels and 65+ are tested, not assumed.</p>
+<div class="grid2">
+  <div class="card"><h3>Every set used the same stack. Only age, gender, placement differed.</h3><table id="mcs"></table></div>
+  <div class="card"><h3>Who bought, where, on what</h3><table id="mcag"></table><table id="mcpp"></table><table id="mcdv"></table></div>
+</div>
+<div class="card glow-green"><p><span class="G">76% of Masterclass buyers are 55+, 48% are 65+.</span> <span class="G">85% came from FB Reels, 88% on iPhone.</span> <span class="R">Women-only sets cost $100–200 more per sale than all-gender sets.</span> <span class="G">Warm checkout starters converted 4.4% of clicks, the best in the account.</span> <span class="R">Instagram: $1,990, 2 sales. Desktop: $1,394, 0.</span></p></div>
+
+<h2 id="plan"><span>Section 9</span>The plan, set by set: what, why, intent, what to expect</h2>
+<p class="lede">Masterclass sets are terminated. Everything runs inside the Blueprint campaign. $240/day total against $223 today. Two ads per set: the Ad#17 "Five habits" video with Blueprint copy, and Courtney video #3.</p>
+
+<div class="card glow-red"><div class="plan"><div>
+<h3><span class="R">PAUSE</span> · Adset 2 #108808 · Adset 5 #108811 · Julie video #12</h3>
+<p><b>Why.</b> Identical copies of each other on the Masterclass stack, capped at 64, Instagram and desktop on. $3,383 lifetime, 1,128 clicks, <b>0 real checkouts</b>. Since Oct 6: $1,654, 91 clicks, nothing. Julie video: $4,667, 3,946 clicks, 0 real checkouts outside remarketing.</p>
+<p><b>Certainty.</b> Total. There is no reading of this data in which these two sets or this ad earn another dollar.</p>
+</div><div>
+<p class="note">Frees</p><div class="big R">$84/day</div>
+<p class="note" style="margin-top:14px">Intent level of the audience</p><div class="meter"><i style="width:20%;background:var(--red)"></i></div><p class="note">Cold, qualified by income and shopping behaviour, but the ad never moved them.</p>
+</div></div></div>
+
+<div class="card glow-green"><div class="plan"><div>
+<h3><span class="G">NEW · BP-WARM</span> · Masterclass buyers + CRM paid purchasers + Masterclass checkout starters · $80/day</h3>
+<p><b>Settings.</b> Include the three lists. No exclusions. US · all genders · 35–65+ · FB Feed + FB Reels + IG Feed · mobile · Advantage+ audience OFF · Purchase optimization · 7-day click, 1-day view.</p>
+<p><b>Why this is the first set to build.</b> It is the only audience that has ever bought Blueprint at volume: 2 of 3 October sales came within four days of the Masterclass attendee offer. On the Masterclass side the same warm pool converted <b>4.4% of clicks</b> at $305 a sale, the best in the account. These people watched Julie for an hour and paid; the Blueprint ad is a second offer to a buyer, not a cold pitch. IG Feed stays on here only: Blueprint's cheapest cart ever ($206) was IG Feed, and this audience already knows the brand.</p>
+<p><b>Why I am sure it delivers today.</b> Small warm lists get served within the hour; the CPM problem was auction competition with Masterclass for cold people, and this audience has no competitor now.</p>
+</div><div>
+<p class="note">Intent level</p><div class="meter"><i style="width:92%;background:var(--green);box-shadow:0 0 12px var(--green)"></i></div><p class="note">Bought or started paying for Julie in the last 30–180 days.</p>
+<p class="note" style="margin-top:14px">Week 1, $560</p><div class="big G">1–3 sales</div>
+<p class="note">Math: ~45–60 clicks at $9–13; a warm click-to-sale of 2–4% (Masterclass did 4.4% at a $79 ticket; Blueprint asks $79 today and $755 total, so expect the low end). Cost per sale $200–560.</p>
+<p class="note" style="margin-top:14px">Confidence</p><div class="big G">High</div>
+<p class="note">Kill rule: 0 impressions after 2 h → switch to Initiate Checkout optimization. $300 spent, 0 carts → pause the weaker-CTR ad.</p>
+</div></div></div>
+
+<div class="card glow-amber"><div class="plan"><div>
+<h3><span class="A">NEW · BP-FORMULA</span> · the Masterclass stack, 55–65+, FB Feed + Reels · $120/day</h3>
+<p><b>Settings.</b> The 41 interests AND Engaged Shoppers AND household income top 10% + 10–25% (copy from Adset 2). US · all genders · <b>55–65+</b> · FB Feed + FB Reels · mobile · Advantage+ audience OFF · exclude the buyers list and Purchase-30d · Purchase optimization. Audience roughly 35–45M.</p>
+<p><b>Why this exact set.</b> The stack is proven on 199 purchases. What Blueprint never ran is the stack with the 65+ door open: 95 of those 199 buyers were 65+, and Blueprint's cold sets excluded them since Sep 28. Women 55–64 is already Blueprint's best cold cell (16 carts). Men stay in because every women-only Masterclass set cost $100–200 more per sale than its all-gender twin. Instagram and desktop are off because across both products they produced 3 sales on $9,000.</p>
+<p><b>Why I am not certain, and what guards it.</b> A $49 impulse and a $755 program do not behave the same on a swipe surface. Blueprint's own Reels data is 3 carts and 1 sale. So Feed and Reels both run, Meta allocates, and on Nov 6 the placement with cost per checkout above $250 is cut. Same for age: if 65+ carts are above $250 each on Nov 6, the set goes to 55–64.</p>
+</div><div>
+<p class="note">Intent level</p><div class="meter"><i style="width:38%;background:var(--amber);box-shadow:0 0 12px var(--amber)"></i></div><p class="note">Cold, but pre-qualified: affluent, shoppers, longevity interests, the age that buys.</p>
+<p class="note" style="margin-top:14px">Week 1, $840</p><div class="big A">0–2 sales</div>
+<p class="note">Math: ~80–90 clicks at $9–10 (Masterclass CPC on this stack). Blueprint cold has converted 0.03%; the Masterclass ad on this stack 3.1%. A realistic Blueprint rate with the proven video is 0.5–1.5%: 0.4–1.3 sales. One sale in week 1 is success here; the read that matters is cost per checkout.</p>
+<p class="note" style="margin-top:14px">Confidence</p><div class="big A">Medium</div>
+<p class="note">Kill rules: CPM above $900 after 48 h with under 50 clicks → pause. Nov 6: cost per checkout over $250 → cut the losing placement or age cell.</p>
+</div></div></div>
+
+<div class="card glow-blue"><div class="plan"><div>
+<h3><span class="B">REBUILD · Adset 4 #108810</span> remarketing · $40/day</h3>
+<p><b>Settings.</b> Optimization → <b>Initiate Checkout</b> until 10 purchases are logged, then back to Purchase. Keep: site 30/90, checkout 30/90, cart 30/90. Remove: leads 30/90, form openers, both video-viewer lists. Exclude: buyers list and the QA phone. FB Feed + FB Reels · mobile · 45–65+ · all genders. Ads: Ad#17-Blueprint + Courtney video #3. Pause the rest.</p>
+<p><b>Why.</b> This set produced both post-launch credited sales, on Courtney creative. It is also where the damage is: 11 lists of which four (leads, form openers, two video lists) are people who never saw a price; buyers inside; the QA phone inside and trained into it on Sep 20–26; and Purchase optimization on a set that has seen 2 purchases in 7 weeks, which is why it pays $357 CPM. Initiate Checkout gives Meta 25+ events a week to learn from instead of 2.</p>
+<p><b>Why $40 and not $139.</b> The pool is 27–32k people and the frequency is already 3.6. $139 bought the same people over and over at $357 CPM.</p>
+</div><div>
+<p class="note">Intent level</p><div class="meter"><i style="width:68%;background:var(--blue);box-shadow:0 0 12px var(--blue)"></i></div><p class="note">Saw the Blueprint page, the price, or the checkout in the last 90 days.</p>
+<p class="note" style="margin-top:14px">Week 1, $280</p><div class="big B">0–1 sale</div>
+<p class="note">Math: ~20–25 clicks at $12–15; remarketing has converted 0.7% of clicks (2 of 288) with buyers and QA inside. Clean, with the proven video, 1–3%: 0.2–0.7 sales. Its job in week 1 is checkouts, not sales.</p>
+<p class="note" style="margin-top:14px">Confidence</p><div class="big B">Medium</div>
+<p class="note">Kill rule: $300 spent, 0 checkouts → pause and fold the lists into BP-WARM.</p>
+</div></div></div>
+
+<div class="card"><h3>Week 1 in total: $1,680 spent, 2–5 Blueprint sales expected, against 1 sale on $2,977 in the last 29 days</h3>
+<p>Reads: <b>+2 h</b> BP-WARM delivering · <b>+24 h</b> all three sets: CPM, clicks, carts, checkouts, sales · <b>Nov 6</b> kill rules above · <b>Nov 10</b> scale the lowest cost per sale by 50%, pause the worst. No edits between reads. No third ad in any set.</p>
+<p class="note">Why I am definite about the shape and honest about the counts: the shape (warm first, proven stack with 65+ open, remarketing cleaned and re-signalled, Instagram and desktop off, two ads) follows from 12 Blueprint sets and 6 Masterclass sets of evidence on this page. The counts are ranges because Blueprint has 6 sales to model from. The Nov 6 read turns the ranges into numbers.</p></div>
+
 <hr>
-<p class="note">Sources: Meta Graph API (ad set objects, custom audiences, delivery_estimate), Meta Insights API (daily, placement, age × gender, device, hourly), Meta pixel 1440305917310328 event stats by host, GitHub gitteromri-ux/lla-course-checkout commit log. Raw JSON pulls in the repo on request.</p>
+<p class="note">Sources: Meta Graph API (ad set objects, custom audiences, delivery_estimate, learning_stage_info), Meta Insights API (daily, weekly, placement, age × gender, device, hourly, per ad), Meta pixel 1440305917310328 event stats by host, GitHub gitteromri-ux/lla-course-checkout commit log. Readable text versions: <a href="README.md">README.md</a> · <a href="STAGE-1.md">STAGE-1.md</a>. Raw JSON pulls on request.</p>
 </div>
 
 <script>
-const fmt$=v=>'$'+Math.round(v).toLocaleString();
-const fmt=v=>Math.round(v).toLocaleString();
+const fmt$=v=>'$'+Math.round(v).toLocaleString();const fmt=v=>Math.round(v).toLocaleString();
+Chart.defaults.color='#c6cde0';Chart.defaults.font.family='Lato';Chart.defaults.font.size=14;
 fetch('data.json').then(r=>r.json()).then(D=>{
-  const live=D.sets.filter(s=>s.status==='ACTIVE');
-  const all=D.all;
+  const live=D.sets.filter(s=>s.status==='ACTIVE'); const all=D.all;
   const sum=(o,k)=>Object.values(o).reduce((a,v)=>a+(v[k]||0),0);
   document.getElementById('k-spend').textContent=fmt$(sum(all.pp,'spend'));
   document.getElementById('k-purch').textContent=sum(all.pp,'p');
   document.getElementById('k-ic').textContent=sum(all.pp,'ic')-24;
-  let s14=0,i14=0,c14=0;
-  live.forEach(s=>s.d14.forEach(d=>{s14+=d.spend;i14+=d.imp;c14+=d.ic;}));
-  document.getElementById('k-14').textContent=fmt$(s14);
-  document.getElementById('k-cpm').textContent=fmt$(1000*s14/i14);
+  let s14=0,i14=0; live.forEach(s=>s.d14.forEach(d=>{s14+=d.spend;i14+=d.imp;}));
+  document.getElementById('k-14').textContent=fmt$(s14); document.getElementById('k-cpm').textContent=fmt$(1000*s14/i14);
 
-  // live set cards
-  const vClass={ON:'tag off',OFF:'tag warn'};
   document.getElementById('live').innerHTML=live.map(s=>{
     const t14=s.d14.reduce((a,d)=>{for(const k in d) if(k!=='day') a[k]=(a[k]||0)+d[k];return a;},{});
     const cpm=t14.imp?1000*t14.spend/t14.imp:0;
     const incAud=s.inc_aud.length?s.inc_aud.map(a=>`${a.name} <span class="pill">(${a.size})</span>`).join('<br>'):'none';
-    const excAud=s.exc_aud.length?s.exc_aud.map(a=>`${a.name} <span class="pill">(${a.size})</span>`).join('<br>'):(s.inc_aud.length?'<span class="v-red">none — buyers and the QA phone are inside</span>':'<span class="v-red">none — existing buyers not excluded</span>');
-    return `<div class="card">
+    const excAud=s.exc_aud.length?s.exc_aud.map(a=>`${a.name} <span class="pill">(${a.size})</span>`).join('<br>'):(s.inc_aud.length?'<span class="R">none — buyers and the QA phone are inside</span>':'<span class="R">none — existing buyers not excluded</span>');
+    const glow=s.id==='52666232368428'?'glow-blue':'glow-red';
+    return `<div class="card ${glow}">
       <h3>${s.name} <span class="pill">· ID ${s.id}</span></h3>
       <div>
-        <span class="tag">Budget $${s.budget}/day</span>
+        <span class="tag info">Budget $${s.budget}/day</span>
         <span class="tag">${s.opt}</span>
         <span class="tag">Attribution ${s.attr}</span>
-        <span class="tag ${s.adv==='ON'?'on':'warn'}">Advantage+ audience ${s.adv}</span>
+        <span class="tag ${s.adv==='ON'?'good':'warn'}">Advantage+ audience ${s.adv}</span>
         <span class="tag">${s.placements.startsWith('Manual')?'Manual placements':'Advantage+ placements'}</span>
-        <span class="tag">Learning: ${s.learning}, last significant edit ${s.last_sig_edit}</span>
+        <span class="tag warn">Learning: ${s.learning} · last significant edit ${s.last_sig_edit}</span>
+        ${t14.p?'<span class="tag good">1 sale in 14 days</span>':'<span class="tag bad">0 sales in 14 days</span>'}
       </div>
       <div class="grid2" style="margin-top:12px">
         <table class="kv">
-          <tr><td>Ages · gender</td><td><b>${s.age}</b> · ${s.gender}${s.age.endsWith('64')?' <span class="v-red">(65+ excluded)</span>':''}</td></tr>
+          <tr><td>Ages · gender</td><td><b>${s.age}</b> · ${s.gender}${s.age.endsWith('64')?' <span class="R">65+ excluded</span>':''}</td></tr>
           <tr><td>Geo</td><td>${s.geo}</td></tr>
-          <tr><td>Interests</td><td>${s.interests.length?`<b>${s.interests.length}</b> — <details><summary>show</summary>${s.interests.join(', ')}</details>`:'none'}</td></tr>
-          <tr><td>Engaged Shoppers</td><td>${s.shoppers?'<b class="v-green">YES</b>':'no'}</td></tr>
-          <tr><td>Household income</td><td>${s.income.length?s.income.join(', '):'none'}</td></tr>
+          <tr><td>Interests</td><td>${s.interests.length?`<b>${s.interests.length}</b> <details><summary>show all</summary>${s.interests.join(', ')}</details>`:'none'}</td></tr>
+          <tr><td>Engaged Shoppers</td><td>${s.shoppers?'<span class="G">YES</span>':'no'}</td></tr>
+          <tr><td>Household income</td><td>${s.income.length?'<b>'+s.income.join(', ')+'</b>':'none'}</td></tr>
           <tr><td>Stack logic</td><td>${s.stack||'—'}</td></tr>
-          <tr><td>Placements</td><td>${s.placements.replace('Manual: ','')}${/IG/.test(s.placements)?' <span class="v-red">(Instagram on)</span>':''}</td></tr>
-          <tr><td>Devices</td><td>${s.devices}${/desktop/.test(s.devices)?' <span class="v-red">(desktop on)</span>':''}</td></tr>
+          <tr><td>Placements</td><td>${s.placements.replace('Manual: ','')}${/IG/.test(s.placements)?' <span class="R">Instagram on</span>':''}</td></tr>
+          <tr><td>Devices</td><td>${s.devices}${/desktop/.test(s.devices)?' <span class="R">desktop on</span>':''}</td></tr>
         </table>
         <table class="kv">
           <tr><td>Included audiences</td><td>${incAud}</td></tr>
           <tr><td>Excluded audiences</td><td>${excAud}</td></tr>
-          <tr><td>Lookalikes</td><td>${s.inc_aud.some(a=>/Lookalike|LAL/i.test(a.name))?'yes':'<span class="v-red">none</span>'}</td></tr>
+          <tr><td>Lookalikes (ratio · seed · size)</td><td>${s.lal_inc&&s.lal_inc.length?s.lal_inc.map(l=>`<b>${l.ratio} ${l.country}</b> of <i>${l.seed}</i> <span class="pill">(${l.size}${l.ok?'':', FAILED'})</span>`).join('<br>'):'<span class="R">none — no 1% or 2% lookalike in this set</span>'}</td></tr>
           <tr><td>Estimated audience</td><td><b>${s.est}</b></td></tr>
           <tr><td>Ads active</td><td>${s.ads_active.join('<br>')||'none'} <span class="pill">(${s.ads_total} in set)</span></td></tr>
-          <tr><td>Last 14 days</td><td><b>${fmt$(t14.spend)}</b> · CPM <b>${fmt$(cpm)}</b> · ${t14.clicks} clicks · ${t14.lpv} landing views (${t14.lpv?fmt$(t14.spend/t14.lpv):'—'} each) · ${t14.carts} carts · ${t14.ic} checkouts · <b class="${t14.p?'v-green':'v-red'}">${t14.p} purchases</b></td></tr>
+          <tr><td>Last 14 days</td><td><b>${fmt$(t14.spend)}</b> · CPM <span class="R">${fmt$(cpm)}</span> · ${t14.clicks} clicks · ${t14.lpv} landing views (${t14.lpv?fmt$(t14.spend/t14.lpv):'—'} each) · ${t14.carts} carts · ${t14.ic} checkouts · <span class="${t14.p?'G':'R'}">${t14.p} purchases</span></td></tr>
           <tr><td>All time</td><td>${fmt$(s.total.spend)} · ${s.total.clicks} clicks · ${s.total.carts} carts · ${s.total.ic} checkouts · ${s.total.p} purchases${s.id==='52666232368428'?' <span class="pill">(43 carts / 24 checkouts are the QA phone)</span>':''}</td></tr>
         </table>
       </div></div>`;}).join('');
 
-  // 14-day chart
-  const days=live[0].d14.map(d=>d.day);
-  const colors=['#ff5a4e','#5aa9ff','#3ddc84'];
+  const days=live[0].d14.map(d=>d.day); const colors=['#4da3ff','#ff4d5e','#ffb830'];
   const chgIdx=D.changes.map(c=>days.indexOf(c.day)).filter(i=>i>=0);
-  const chgPlugin={id:'chg',afterDraw(ch){const {ctx,chartArea:{top,bottom},scales:{x}}=ch;ctx.save();ctx.strokeStyle='rgba(61,220,132,.9)';ctx.lineWidth=4;chgIdx.forEach(i=>{const px=x.getPixelForValue(i);ctx.beginPath();ctx.moveTo(px,top);ctx.lineTo(px,bottom);ctx.stroke();});ctx.restore();}};
-  Chart.defaults.color='#c6cde0';Chart.defaults.font.family='Lato';Chart.defaults.font.size=14;
-  new Chart(document.getElementById('c14'),{type:'bar',plugins:[chgPlugin],data:{labels:days,datasets:live.map((s,i)=>({label:s.name.replace('ecomm ','').replace('_All_All_CPM',''),data:s.d14.map(d=>d.spend),backgroundColor:colors[i]+'cc',stack:'s'})).concat(live.map((s,i)=>({type:'line',label:'CPM '+s.name.replace('ecomm ','').replace('_All_All_CPM',''),data:s.d14.map(d=>d.imp?Math.round(1000*d.spend/d.imp):null),borderColor:colors[i],borderWidth:2,pointRadius:3,yAxisID:'y2',tension:.2})))},
-    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index'},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,title:{display:true,text:'Spend $'}},y2:{position:'right',title:{display:true,text:'CPM $'},grid:{display:false}}},plugins:{legend:{position:'bottom'},title:{display:true,text:'Bars: daily spend per set · Lines: CPM per set · Green lines: significant changes (Oct 27, Oct 30, Nov 2)'}}}});
+  const chgPlugin={id:'chg',afterDraw(ch){const {ctx,chartArea:{top,bottom},scales:{x}}=ch;ctx.save();ctx.strokeStyle='rgba(34,229,138,.95)';ctx.lineWidth=4;ctx.shadowColor='#22e58a';ctx.shadowBlur=12;chgIdx.forEach(i=>{const px=x.getPixelForValue(i);ctx.beginPath();ctx.moveTo(px,top);ctx.lineTo(px,bottom);ctx.stroke();});ctx.restore();}};
+  const sn=s=>s.name.replace('ecomm ','').replace('_All_All_CPM','');
+  new Chart(document.getElementById('c14'),{type:'bar',plugins:[chgPlugin],data:{labels:days,datasets:live.map((s,i)=>({label:sn(s),data:s.d14.map(d=>d.spend),backgroundColor:colors[i]+'bb',stack:'s'})).concat(live.map((s,i)=>({type:'line',label:'CPM '+sn(s),data:s.d14.map(d=>d.imp?Math.round(1000*d.spend/d.imp):null),borderColor:colors[i],borderWidth:2,pointRadius:3,yAxisID:'y2',tension:.25})))},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index'},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,title:{display:true,text:'Spend $'}},y2:{position:'right',title:{display:true,text:'CPM $'},grid:{display:false}}},plugins:{legend:{position:'bottom'}}}});
 
-  // 14-day tables
   document.getElementById('d14').innerHTML=live.map(s=>{
     const rows=s.d14.map(d=>{const c=D.changes.find(c=>c.day===d.day);return `<tr class="${c?'chg':''}"><td>${d.day}</td><td class="n">${fmt$(d.spend)}</td><td class="n">${fmt(d.imp)}</td><td class="n">${d.imp?fmt$(1000*d.spend/d.imp):'—'}</td><td class="n">${d.lpv}</td><td class="n">${d.lpv?fmt$(d.spend/d.lpv):'—'}</td><td class="n">${d.carts}</td><td class="n">${d.ic}</td><td class="n">${d.p}</td><td>${c?c.text:''}</td></tr>`;}).join('');
     const t=s.d14.reduce((a,d)=>{for(const k in d) if(k!=='day') a[k]=(a[k]||0)+d[k];return a;},{});
-    return `<details><summary>${s.name} — day by day</summary><table><tr><th>Day</th><th class="n">Spend</th><th class="n">Impr.</th><th class="n">CPM</th><th class="n">LPV</th><th class="n">$/LPV</th><th class="n">Carts</th><th class="n">Checkouts</th><th class="n">Purch.</th><th>Change</th></tr>${rows}<tr class="tot"><td>14 days</td><td class="n">${fmt$(t.spend)}</td><td class="n">${fmt(t.imp)}</td><td class="n">${fmt$(1000*t.spend/t.imp)}</td><td class="n">${t.lpv}</td><td class="n">${t.lpv?fmt$(t.spend/t.lpv):'—'}</td><td class="n">${t.carts}</td><td class="n">${t.ic}</td><td class="n">${t.p}</td><td></td></tr></table></details>`;}).join('');
+    return `<div class="card"><details><summary>${s.name} — day by day</summary><table><tr><th>Day</th><th class="n">Spend</th><th class="n">Impr.</th><th class="n">CPM</th><th class="n">LPV</th><th class="n">$/LPV</th><th class="n">Carts</th><th class="n">Checkouts</th><th class="n">Purch.</th><th>Change</th></tr>${rows}<tr class="tot"><td>14 days</td><td class="n">${fmt$(t.spend)}</td><td class="n">${fmt(t.imp)}</td><td class="n">${fmt$(1000*t.spend/t.imp)}</td><td class="n">${t.lpv}</td><td class="n">${t.lpv?fmt$(t.spend/t.lpv):'—'}</td><td class="n">${t.carts}</td><td class="n">${t.ic}</td><td class="n">${t.p}</td><td></td></tr></table></details></div>`;}).join('');
 
-  // audiences
-  document.getElementById('aud').innerHTML=`<table><tr><th>Audience</th><th>Seed / source</th><th>Size</th><th>Created / updated</th><th>Status</th><th>Used by</th></tr>`+D.audiences.map(a=>`<tr><td><b>${a.name}</b></td><td>${a.seed}</td><td>${a.size}</td><td>${a.created} / ${a.updated}</td><td>${a.ok?'<span class="v-green">OK</span>':'<span class="v-red">FAILED</span>'}</td><td>${a.used.join(', ')||'—'}</td></tr>`).join('')+'</table>';
+  // weekly chart
+  const W=D.weekly; const lab=W.map(w=>'w/'+w.week);
+  new Chart(document.getElementById('cwk'),{type:'bar',data:{labels:lab,datasets:[{label:'Spend $',data:W.map(w=>w.spend),backgroundColor:'#c9ced655',yAxisID:'y'},{type:'line',label:'Real checkouts',data:W.map(w=>w.real_ic),borderColor:'#4da3ff',backgroundColor:'#4da3ff',borderWidth:3,yAxisID:'y2',tension:.25},{type:'line',label:'QA-phone checkouts',data:W.map(w=>w.test_ic),borderColor:'#6b7590',borderDash:[4,4],borderWidth:2,yAxisID:'y2'},{type:'line',label:'Credited purchases',data:W.map(w=>w.p),borderColor:'#ff4d5e',backgroundColor:'#ff4d5e',borderWidth:3,yAxisID:'y2',pointStyle:'rectRot',pointRadius:6},{type:'line',label:'CPM $',data:W.map(w=>w.cpm),borderColor:'#ffb830',borderWidth:2,yAxisID:'y3',pointRadius:3}]},
+    options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index'},plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'Spend $'}},y2:{position:'right',title:{display:true,text:'Checkouts / purchases'},min:0,max:20,grid:{display:false}},y3:{position:'right',display:false,min:0,max:600}}}});
 
-  // all-time charts
-  const hbar=(id,obj,note)=>{const ks=Object.keys(obj);new Chart(document.getElementById(id),{type:'bar',data:{labels:ks,datasets:[{label:'Spend $',data:ks.map(k=>obj[k].spend),backgroundColor:ks.map(k=>obj[k].p?'#3ddc84cc':(obj[k].ic?'#5aa9ffcc':'#ff5a4ecc'))}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{const v=obj[c.label];return ` ${fmt$(v.spend)} · ${v.clicks} clicks · ${v.lpv} LPV · ${v.carts} carts · ${v.ic} checkouts · ${v.p} purchases`;}}},title:{display:true,text:'green = produced a purchase · blue = checkouts only · red = nothing'}},scales:{x:{suggestedMax:Math.max(...ks.map(k=>obj[k].spend))*2.1,ticks:{callback:v=>'$'+v.toLocaleString()}}}},plugins:[{id:'lbl',afterDatasetsDraw(ch){const {ctx}=ch;ctx.save();ctx.fillStyle='#f2f4f8';ctx.font='700 13px Lato';ch.getDatasetMeta(0).data.forEach((b,i)=>{const v=obj[ks[i]];ctx.fillText(`${fmt$(v.spend)} · ${v.carts} carts · ${v.ic} co · ${v.p} P${ks[i]==='Men 35-44'?' (QA phone)':''}`,b.x+6,b.y+5);});ctx.restore();}}]});};
+  const tl=D.timeline.map(e=>`<tr class="${e.kind==='sale'?'sale':e.kind==='bug'?'bug':e.kind==='change'?'chg':''}"><td style="white-space:nowrap"><b>${e.day}</b></td><td>${e.kind==='sale'?'<span class="B">SALE</span> ':e.kind==='bug'?'<span class="R">BUG</span> ':e.kind==='change'?'<span class="G">CHANGE</span> ':''}${e.what}</td></tr>`).join('');
+  document.getElementById('tl').innerHTML='<tr><th>When</th><th>What</th></tr>'+tl;
+
+  new Chart(document.getElementById('cacct'),{type:'line',data:{labels:D.acct.map(a=>a.day),datasets:[{label:'Account CPM $',data:D.acct.map(a=>a.cpm),borderColor:'#ffb830',backgroundColor:'rgba(255,184,48,.15)',fill:true,borderWidth:2,pointRadius:0,tension:.3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{maxTicksLimit:12}},y:{title:{display:true,text:'CPM $'}}}}});
+
+  document.getElementById('aud-t').innerHTML=`<table><tr><th>Audience</th><th>Seed / source</th><th>Size</th><th>Created / updated</th><th>Status</th><th>Used by</th></tr>`+D.audiences.map(a=>`<tr><td><b>${a.name}</b></td><td>${a.seed}</td><td>${a.size}</td><td>${a.created} / ${a.updated}</td><td>${a.ok?'<span class="G">OK</span>':'<span class="R">FAILED</span>'}</td><td>${a.used.join(', ')||'—'}</td></tr>`).join('')+'</table>';
+
+  document.getElementById('lalset').innerHTML='<tr><th>Ad set</th><th>Campaign</th><th>Status</th><th>Lookalikes included</th><th>Lists included</th><th>Excluded</th></tr>'+D.lal_by_set.map(r=>`<tr><td><b>${r.set}</b><br><span class="pill">${r.id}</span></td><td>${r.campaign}</td><td>${r.status==='ACTIVE'?'<span class="G">ACTIVE</span>':'<span class="pill">'+r.status+'</span>'}</td><td>${r.lal_inc.length?r.lal_inc.map(l=>`<b>${l.ratio} ${l.country}</b> of <i>${l.seed}</i> <span class="pill">(${l.size}${l.ok?'':', FAILED'})</span>`).join('<br>'):'<span class="R">none</span>'}</td><td>${r.lists_inc.length?r.lists_inc.join('<br>'):'—'}</td><td>${[...r.lal_exc.map(l=>`LAL ${l.ratio} of ${l.seed}`),...r.lists_exc].join('<br>')||'<span class="R">none</span>'}</td></tr>`).join('');
+  const hbar=(id,obj)=>{const ks=Object.keys(obj);new Chart(document.getElementById(id),{type:'bar',data:{labels:ks,datasets:[{label:'Spend $',data:ks.map(k=>obj[k].spend),backgroundColor:ks.map(k=>obj[k].p?'#22e58acc':(obj[k].ic?'#4da3ffcc':'#ff4d5ecc')),borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{const v=obj[c.label];return ` ${fmt$(v.spend)} · ${v.clicks} clicks · ${v.lpv} LPV · ${v.carts} carts · ${v.ic} checkouts · ${v.p} purchases`;}}}},scales:{x:{suggestedMax:Math.max(...ks.map(k=>obj[k].spend))*2.15,ticks:{callback:v=>'$'+v.toLocaleString()}},y:{grid:{display:false}}}},plugins:[{id:'lbl',afterDatasetsDraw(ch){const {ctx}=ch;ctx.save();ctx.fillStyle='#f4f6fb';ctx.font='700 13px Lato';ch.getDatasetMeta(0).data.forEach((b,i)=>{const v=obj[ks[i]];ctx.fillText(`${fmt$(v.spend)} · ${v.carts} carts · ${v.ic} co · ${v.p} P${ks[i]==='Men 35-44'?' (QA phone)':''}`,b.x+6,b.y+5);});ctx.restore();}}]});};
   hbar('cpp',all.pp);hbar('cag',all.ag);hbar('cdv',all.dv);
 
-  // per-set cuts
   const tbl=(obj,flag)=>`<table><tr><th>Segment</th><th class="n">Spend</th><th class="n">CPM</th><th class="n">Clicks</th><th class="n">LPV</th><th class="n">$/LPV</th><th class="n">Carts</th><th class="n">Checkouts</th><th class="n">Purch.</th><th class="n">$/purchase</th></tr>`+Object.entries(obj).map(([k,v])=>`<tr><td>${k}${flag&&k==='Men 35-44'?' <span class="pill">QA phone</span>':''}</td><td class="n">${fmt$(v.spend)}</td><td class="n">${v.imp?fmt$(1000*v.spend/v.imp):'—'}</td><td class="n">${fmt(v.clicks)}</td><td class="n">${fmt(v.lpv)}</td><td class="n">${v.lpv?fmt$(v.spend/v.lpv):'—'}</td><td class="n">${v.carts}</td><td class="n">${v.ic}</td><td class="n">${v.p}</td><td class="n">${v.p?fmt$(v.spend/v.p):'—'}</td></tr>`).join('')+'</table>';
-  document.getElementById('persets').innerHTML='<h3>Per ad set, all time, with the configuration that produced it</h3>'+D.sets.filter(s=>s.total.spend>0).map(s=>`<details class="card"><summary>${s.name} — ${s.status} — ${fmt$(s.total.spend)} · ${s.total.carts} carts · ${s.total.ic} checkouts · ${s.total.p} purchases</summary>
+  document.getElementById('persets').innerHTML='<h3>Per ad set, all time, with the configuration that produced it</h3>'+D.sets.filter(s=>s.total.spend>0).map(s=>`<div class="card"><details><summary>${s.name} — ${s.status} — ${fmt$(s.total.spend)} · ${s.total.carts} carts · ${s.total.ic} checkouts · ${s.total.p} purchases</summary>
     <p class="note" style="margin-top:10px">${s.age} · ${s.gender} · Advantage+ audience ${s.adv} · ${s.interests.length?s.interests.length+' interests':(s.inc_aud.length?s.inc_aud.length+' remarketing lists':'broad')}${s.shoppers?' + Engaged Shoppers':''}${s.income.length?' + income '+s.income.join('/'):''} · ${s.placements} · ${s.devices} · ${s.geo} · created ${s.created}</p>
-    <h3>By placement</h3>${tbl(s.pp)}<h3>By gender × age</h3>${tbl(s.ag,s.id==='52666232368428')}<h3>By device</h3>${tbl(s.dv)}</details>`).join('');
+    <h3>By placement</h3>${tbl(s.pp)}<h3>By gender × age</h3>${tbl(s.ag,s.id==='52666232368428')}<h3>By device</h3>${tbl(s.dv)}</details></div>`).join('');
+
+  document.getElementById('adst').innerHTML='<tr><th>Ad</th><th class="n">Spend</th><th class="n">CPM</th><th class="n">Clicks</th><th class="n">CPC</th><th class="n">Carts</th><th class="n">Checkouts</th><th class="n">Purchases</th></tr>'+D.ads.map(a=>`<tr><td><b>${a.name}</b></td><td class="n">${fmt$(a.spend)}</td><td class="n">${fmt$(a.cpm)}</td><td class="n">${fmt(a.clicks)}</td><td class="n">$${a.cpc}</td><td class="n">${a.carts}</td><td class="n">${a.ic}</td><td class="n ${a.p?'G':'R'}">${a.p}</td></tr>`).join('');
+  document.getElementById('hrs').innerHTML='<tr><th>Block</th><th class="n">Spend</th><th class="n">Clicks</th><th class="n">Carts</th><th class="n">Checkouts</th><th class="n">Sales</th></tr>'+D.hours.map(h=>`<tr><td><b>${h.block}</b></td><td class="n">${fmt$(h.spend)}</td><td class="n">${h.clicks}</td><td class="n">${h.carts}</td><td class="n">${h.ic}</td><td class="n">${h.p}</td></tr>`).join('');
+  document.getElementById('dow').innerHTML='<tr><th>Day</th><th class="n">Spend</th><th class="n">Carts</th><th class="n">$/cart</th><th class="n">Checkouts</th><th class="n">Sales</th></tr>'+D.dow.map(h=>`<tr><td><b>${h.d}</b></td><td class="n">${fmt$(h.spend)}</td><td class="n">${h.carts}</td><td class="n">${fmt$(h.spend/h.carts)}</td><td class="n">${h.ic}</td><td class="n">${h.p}</td></tr>`).join('');
+  const M=D.mc;
+  document.getElementById('mcs').innerHTML='<tr><th>Set</th><th>Config</th><th class="n">Spend</th><th class="n">CPM</th><th class="n">CPC</th><th class="n">Sales</th><th class="n">$/sale</th><th class="n">Click→sale</th></tr>'+M.sets.map(s=>`<tr><td><b>${s.n}</b></td><td>${s.cfg}</td><td class="n">${fmt$(s.spend)}</td><td class="n">${fmt$(s.cpm)}</td><td class="n">$${s.cpc}</td><td class="n">${s.p}</td><td class="n ${s.cpp<350?'G':s.cpp<450?'A':'R'}">${fmt$(s.cpp)}</td><td class="n">${s.cr}%</td></tr>`).join('');
+  const mt=(id,rows,h)=>document.getElementById(id).innerHTML=`<tr><th>${h}</th><th class="n">Spend</th><th class="n">Sales</th><th class="n">$/sale</th></tr>`+rows.map(r=>`<tr><td><b>${r.c}</b></td><td class="n">${fmt$(r.spend)}</td><td class="n">${r.p}</td><td class="n ${!r.p?'R':r.cpp<380?'G':r.cpp<450?'A':'R'}">${r.p?fmt$(r.cpp):'—'}</td></tr>`).join('');
+  mt('mcag',M.ag,'Gender × age');mt('mcpp',M.pp,'Placement');mt('mcdv',M.dv,'Device');
 });
 </script>
 </body>
