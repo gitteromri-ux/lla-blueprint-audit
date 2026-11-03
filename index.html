@@ -93,11 +93,14 @@ a{color:var(--blue)}
 <div class="grid2">
   <div class="card"><h3>By device</h3><div class="chart"><canvas id="cdv"></canvas></div></div>
   <div class="card"><h3>What the all-time cuts say</h3>
-    <p><span class="verdict v-green">FB Feed</span> carries Blueprint: 70% of spend, most carts, 2 of 4 credited sales.</p>
-    <p><span class="verdict v-red">Instagram, Stories, Threads, Audience Network, in-stream, desktop</span>: ~$5,000 combined, 2 checkouts, 0 sales outside IG Feed's single sale.</p>
-    <p><span class="verdict v-green">Women 45–64</span> are the carters. <span class="verdict v-amber">65+</span> was barely tested (capped at 64 in every cold set since Sep 28).</p>
-    <p><span class="verdict v-red">Men</span>: ~$6,000, 1 sale (Sep 13).</p>
-    <p><span class="verdict v-green">iPhone</span> is 75% of spend and 3 of 4 sales; Android carts are cheaper but thin.</p>
+    <p><span class="verdict v-green">FB Feed</span>: $14,827 (42% of all spend), 102 carts, 15 checkouts, 2 of the 4 credited sales. The only placement that has ever sold Blueprint cold.</p>
+    <p><span class="verdict v-amber">FB Reels</span>: $6,959, 101 carts, 11 checkouts, 1 sale. Same cart cost as Feed, one-third the volume.</p>
+    <p><span class="verdict v-red">FB Stories</span>: $4,808, 163 carts, 7 checkouts, 0 sales (May–Aug old campaign). Carts that never pay.</p>
+    <p><span class="verdict v-red">IG Reels, IG Stories, in-stream, Threads, Audience Network, Marketplace</span>: $5,700 combined, 5 checkouts, 0 sales. IG Feed: $2,746, 1 sale.</p>
+    <p><span class="verdict v-red">Women 65+</span>: $11,137, the biggest cell all time, 291 carts, 12 checkouts, <b>0 sales</b>. Nearly all of it May–Aug under the old BioAge ads. Since Sep 28 the cold sets cap at 64, so 65+ with the current ads is untested.</p>
+    <p><span class="verdict v-green">Women 55–64 and 45–54</span>: $12,516, 90 carts, 9 checkouts, 2 sales. The two cells that have bought.</p>
+    <p><span class="verdict v-red">Men</span>: $8,538, 1 sale (Sep 13). Men 35–44 is the QA phone.</p>
+    <p><span class="verdict v-green">iPhone</span>: 74% of spend, 3 of 4 sales. Desktop: $973, 0 sales.</p>
   </div>
 </div>
 <div id="persets"></div>
@@ -138,7 +141,7 @@ fetch('data.json').then(r=>r.json()).then(D=>{
     const t14=s.d14.reduce((a,d)=>{for(const k in d) if(k!=='day') a[k]=(a[k]||0)+d[k];return a;},{});
     const cpm=t14.imp?1000*t14.spend/t14.imp:0;
     const incAud=s.inc_aud.length?s.inc_aud.map(a=>`${a.name} <span class="pill">(${a.size})</span>`).join('<br>'):'none';
-    const excAud=s.exc_aud.length?s.exc_aud.map(a=>`${a.name} <span class="pill">(${a.size})</span>`).join('<br>'):'<span class="v-red">none — buyers and the QA phone are inside</span>';
+    const excAud=s.exc_aud.length?s.exc_aud.map(a=>`${a.name} <span class="pill">(${a.size})</span>`).join('<br>'):(s.inc_aud.length?'<span class="v-red">none — buyers and the QA phone are inside</span>':'<span class="v-red">none — existing buyers not excluded</span>');
     return `<div class="card">
       <h3>${s.name} <span class="pill">· ID ${s.id}</span></h3>
       <div>
@@ -177,7 +180,7 @@ fetch('data.json').then(r=>r.json()).then(D=>{
   const chgIdx=D.changes.map(c=>days.indexOf(c.day)).filter(i=>i>=0);
   const chgPlugin={id:'chg',afterDraw(ch){const {ctx,chartArea:{top,bottom},scales:{x}}=ch;ctx.save();ctx.strokeStyle='rgba(61,220,132,.9)';ctx.lineWidth=4;chgIdx.forEach(i=>{const px=x.getPixelForValue(i);ctx.beginPath();ctx.moveTo(px,top);ctx.lineTo(px,bottom);ctx.stroke();});ctx.restore();}};
   Chart.defaults.color='#c6cde0';Chart.defaults.font.family='Lato';Chart.defaults.font.size=14;
-  new Chart(document.getElementById('c14'),{type:'bar',plugins:[chgPlugin],data:{labels:days,datasets:live.map((s,i)=>({label:s.name.replace('ecomm ','').replace('_All_All_CPM',''),data:s.d14.map(d=>d.spend),backgroundColor:colors[i]+'cc',stack:'s'})).concat(live.map((s,i)=>({type:'line',label:'CPM '+s.name.split('_')[1],data:s.d14.map(d=>d.imp?Math.round(1000*d.spend/d.imp):null),borderColor:colors[i],borderWidth:2,pointRadius:3,yAxisID:'y2',tension:.2})))},
+  new Chart(document.getElementById('c14'),{type:'bar',plugins:[chgPlugin],data:{labels:days,datasets:live.map((s,i)=>({label:s.name.replace('ecomm ','').replace('_All_All_CPM',''),data:s.d14.map(d=>d.spend),backgroundColor:colors[i]+'cc',stack:'s'})).concat(live.map((s,i)=>({type:'line',label:'CPM '+s.name.replace('ecomm ','').replace('_All_All_CPM',''),data:s.d14.map(d=>d.imp?Math.round(1000*d.spend/d.imp):null),borderColor:colors[i],borderWidth:2,pointRadius:3,yAxisID:'y2',tension:.2})))},
     options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index'},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,title:{display:true,text:'Spend $'}},y2:{position:'right',title:{display:true,text:'CPM $'},grid:{display:false}}},plugins:{legend:{position:'bottom'},title:{display:true,text:'Bars: daily spend per set · Lines: CPM per set · Green lines: significant changes (Oct 27, Oct 30, Nov 2)'}}}});
 
   // 14-day tables
@@ -190,7 +193,7 @@ fetch('data.json').then(r=>r.json()).then(D=>{
   document.getElementById('aud').innerHTML=`<table><tr><th>Audience</th><th>Seed / source</th><th>Size</th><th>Created / updated</th><th>Status</th><th>Used by</th></tr>`+D.audiences.map(a=>`<tr><td><b>${a.name}</b></td><td>${a.seed}</td><td>${a.size}</td><td>${a.created} / ${a.updated}</td><td>${a.ok?'<span class="v-green">OK</span>':'<span class="v-red">FAILED</span>'}</td><td>${a.used.join(', ')||'—'}</td></tr>`).join('')+'</table>';
 
   // all-time charts
-  const hbar=(id,obj,note)=>{const ks=Object.keys(obj);new Chart(document.getElementById(id),{type:'bar',data:{labels:ks,datasets:[{label:'Spend $',data:ks.map(k=>obj[k].spend),backgroundColor:ks.map(k=>obj[k].p?'#3ddc84cc':(obj[k].ic?'#5aa9ffcc':'#ff5a4ecc'))}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{const v=obj[c.label];return ` ${fmt$(v.spend)} · ${v.clicks} clicks · ${v.lpv} LPV · ${v.carts} carts · ${v.ic} checkouts · ${v.p} purchases`;}}},title:{display:true,text:'green = produced a purchase · blue = checkouts only · red = nothing'}},scales:{x:{ticks:{callback:v=>'$'+v.toLocaleString()}}}},plugins:[{id:'lbl',afterDatasetsDraw(ch){const {ctx}=ch;ctx.save();ctx.fillStyle='#f2f4f8';ctx.font='700 13px Lato';ch.getDatasetMeta(0).data.forEach((b,i)=>{const v=obj[ks[i]];ctx.fillText(`${fmt$(v.spend)} · ${v.carts} carts · ${v.ic} co · ${v.p} P${ks[i]==='Men 35-44'?' (QA phone)':''}`,b.x+6,b.y+5);});ctx.restore();}}]});};
+  const hbar=(id,obj,note)=>{const ks=Object.keys(obj);new Chart(document.getElementById(id),{type:'bar',data:{labels:ks,datasets:[{label:'Spend $',data:ks.map(k=>obj[k].spend),backgroundColor:ks.map(k=>obj[k].p?'#3ddc84cc':(obj[k].ic?'#5aa9ffcc':'#ff5a4ecc'))}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>{const v=obj[c.label];return ` ${fmt$(v.spend)} · ${v.clicks} clicks · ${v.lpv} LPV · ${v.carts} carts · ${v.ic} checkouts · ${v.p} purchases`;}}},title:{display:true,text:'green = produced a purchase · blue = checkouts only · red = nothing'}},scales:{x:{suggestedMax:Math.max(...ks.map(k=>obj[k].spend))*2.1,ticks:{callback:v=>'$'+v.toLocaleString()}}}},plugins:[{id:'lbl',afterDatasetsDraw(ch){const {ctx}=ch;ctx.save();ctx.fillStyle='#f2f4f8';ctx.font='700 13px Lato';ch.getDatasetMeta(0).data.forEach((b,i)=>{const v=obj[ks[i]];ctx.fillText(`${fmt$(v.spend)} · ${v.carts} carts · ${v.ic} co · ${v.p} P${ks[i]==='Men 35-44'?' (QA phone)':''}`,b.x+6,b.y+5);});ctx.restore();}}]});};
   hbar('cpp',all.pp);hbar('cag',all.ag);hbar('cdv',all.dv);
 
   // per-set cuts
